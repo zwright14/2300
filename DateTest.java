@@ -11,4 +11,12 @@ public class DateTest {
 			assertEquals(11, myDate.getMonth());
 			assertEquals(1996, myDate.getYear());
 		}
+		
+		@Test
+		public void testIsLeapYear() {
+			assertEquals(true, Date.isLeapYear(2000));
+			assertEquals(true, Date.isLeapYear(2004));
+			assertEquals(false, Date.isLeapYear(2100));
+			assertEquals(false, Date.isLeapYear(2017));
+		}
 }
