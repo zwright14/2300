@@ -4,11 +4,17 @@ public class Date {
 	private int day;
 	private int month;
 	private int year;
+	private int dateInt;
+	public static int[] daysOfTheMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
 	public Date(int d, int m, int y) {
+		if (!Date.isValidDate(d, m, y)) {
+			throw new IllegalArgumentException("Invalid Date was Used");
+		}
 		day = d;
 		month = m;
 		year = y;
+		dateInt = Date.toInt(d, m, y);
 		
 	}
 
@@ -22,6 +28,14 @@ public class Date {
 	
 	public int getYear() {
 		return year;
+	}
+	
+	public int getDateInt() {
+		return dateInt;
+	}
+	
+	public void setDateInt(int newDate) {
+		dateInt = newDate;
 	}
 	
 	public void setDay(int d) {
@@ -53,5 +67,53 @@ public class Date {
 		else {
 			return false;
 		}
+	}
+	
+	public static boolean isValidDate(int d, int m, int y) {
+		if (y>=1) {
+			if (m>=1 && m<=12) {
+				if (Date.isLeapYear(y) && m==2 && d==29) {
+					return true;
+				}
+				else if (d>=1 && d<=daysOfTheMonth[m-1]) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public static int toInt(int d, int m, int y) {
+		int count = 1;
+		int totalDays = 0;
+		while (count<y) {
+			if (Date.isLeapYear(count)) {
+				totalDays += 366;
+			}
+			else {
+				totalDays += 365;
+			}
+			count++;
+		}
+		
+		for (int i=1; i<m; i++) {
+			totalDays += daysOfTheMonth[i];
+		}
+		
+		totalDays += d;
+				
+		if (Date.isLeapYear(y) && m>2) {
+			totalDays += 1;
+		}
+		
+		return totalDays;
 	}
 }
