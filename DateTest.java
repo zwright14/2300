@@ -41,6 +41,22 @@ public class DateTest {
 		public void testDateToInt() {
 			assertEquals(1, Date.toInt(1, 1, 1));
 			assertEquals(60, Date.toInt(1, 3, 1));
-			assertEquals(728963, Date.toInt(1, 11, 1996));
+			assertEquals(728964, Date.toInt(1, 11, 1996));
+		}
+		
+		@Test
+		public void testCalculateDate() {
+			Date Date1 = new Date(1, 1, 1);
+			Date Date2 = new Date(1, 3, 1);
+			Date Date3 = new Date(1, 11, 1996);
+			assertEquals(Date1.getDay(), Date.calculateDate(1).getDay());
+			assertEquals(Date2.getDay(), Date.calculateDate(60).getDay());
+			assertEquals(Date3.getDay(), Date.calculateDate(728964).getDay());
+			assertEquals(Date1.getMonth(), Date.calculateDate(1).getMonth());
+			assertEquals(Date2.getMonth(), Date.calculateDate(60).getMonth());
+			assertEquals(Date3.getMonth(), Date.calculateDate(728964).getMonth());
+			assertEquals(Date1.getYear(), Date.calculateDate(1).getYear());
+			assertEquals(Date2.getYear(), Date.calculateDate(60).getYear());
+			assertEquals(Date3.getYear(), Date.calculateDate(728964).getYear());
 		}
 }
