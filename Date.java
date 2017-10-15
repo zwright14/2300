@@ -4,8 +4,12 @@ public class Date {
 	private int day;
 	private int month;
 	private int year;
+	public static int[] daysOfTheMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
 	public Date(int d, int m, int y) {
+		if (!Date.isValidDate(d, m, y)) {
+			throw new IllegalArgumentException("Invalid Date was Used");
+		}
 		day = d;
 		month = m;
 		year = y;
@@ -48,6 +52,28 @@ public class Date {
 			}
 			else { 
 				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public static boolean isValidDate(int d, int m, int y) {
+		if (y>=0) {
+			if (m>=1 && m<=12) {
+				if (Date.isLeapYear(y) && m==2 && d==29) {
+					return true;
+				}
+				else if (d>=1 && d<=daysOfTheMonth[m-1]) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				return false;
 			}
 		}
 		else {
