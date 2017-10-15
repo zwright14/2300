@@ -105,15 +105,53 @@ public class Date {
 		}
 		
 		for (int i=1; i<m; i++) {
-			totalDays += daysOfTheMonth[i];
+			totalDays += daysOfTheMonth[i-1];
 		}
 		
 		totalDays += d;
 				
 		if (Date.isLeapYear(y) && m>2) {
-			totalDays += 1;
+			totalDays++;
 		}
 		
 		return totalDays;
+	}
+	
+	public static Date calculateDate(int totalDays) {
+		int y = 1;
+		int m = 1;
+		int d = 1;
+		
+		while (totalDays>365) {
+			if (Date.isLeapYear(y)) {
+				if (totalDays>366) {
+					totalDays -= 366;
+				}
+				else {
+					break;
+				}
+			}
+			else {
+				totalDays -= 365;
+			}
+			y++;
+		}
+		
+		while (totalDays>daysOfTheMonth[m-1]) {
+			totalDays -= daysOfTheMonth[m-1];
+			if (m==2 && Date.isLeapYear(y)) {
+				totalDays--;
+			}
+			m++;				
+		}
+		
+		if (totalDays==0) {
+			d = 29;
+		}
+		else {
+			d = totalDays;
+		}
+		
+		return new Date(d, m, y);
 	}
 }
