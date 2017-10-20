@@ -141,6 +141,9 @@ public class Date {
 			totalDays -= daysOfTheMonth[m-1];
 			if (m==2 && Date.isLeapYear(y)) {
 				totalDays--;
+				if (totalDays==0) {
+					break;
+				}
 			}
 			m++;				
 		}
@@ -153,5 +156,20 @@ public class Date {
 		}
 		
 		return new Date(d, m, y);
+	}
+	
+	public void changeDate(Date other) {
+		day = other.getDay();
+		month = other.getMonth();
+		year = other.getYear();
+		dateInt = other.getDateInt();
+	}
+	
+	public void moveDate(int days) {
+		int otherDays = dateInt + days;
+		if (otherDays>0) {
+			Date other = Date.calculateDate(otherDays);
+			this.changeDate(other);
+		}
 	}
 }
