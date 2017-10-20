@@ -69,6 +69,7 @@ public class Date implements Comparable<Date> {
 		}
 	}
 	
+
 	/**
 	 * Checks to see if a given day, month, and year can form a valid date.
 	 * @param d the day of the date.
@@ -97,7 +98,7 @@ public class Date implements Comparable<Date> {
 			return false;
 		}
 	}
-
+  
 	/**
 	 * Converts a day, month, and year into a single integer that represents 
 	 * the day relative to the Gregorian calendar starting date 01/01/0001.
@@ -227,4 +228,3 @@ public class Date implements Comparable<Date> {
 			return 0;
 		}
 	}
-}
