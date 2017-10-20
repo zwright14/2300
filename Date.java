@@ -1,5 +1,5 @@
 
-public class Date {
+public class Date implements Comparable<Date> {
 
 	private int day;
 	private int month;
@@ -177,4 +177,16 @@ public class Date {
 		return dateInt % 7;
 	}
 	
+	public int compareTo(Date other) {
+		if (dateInt > other.getDateInt()) {
+			return 1;
+		}
+		
+		else if (dateInt < other.getDateInt()) {
+			return -1;
+		}
+		else {
+			return 0;
+		}
+	}
 }
