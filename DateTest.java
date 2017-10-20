@@ -30,19 +30,32 @@ public class DateTest {
 		
 		@Test
 		public void testIsValidDate() {
+			for (int i=1; i>100; i++) {
+				assertEquals(true, Date.isValidDate(1, 1, i));
+				if (i<=12) {
+					assertEquals(true, Date.isValidDate(1, i, 1));
+					assertEquals(false, Date.isValidDate(-i, 1, 1));
+					assertEquals(false, Date.isValidDate(1, -i, 1));
+					assertEquals(false, Date.isValidDate(1, 1, -i));
+				}
+				else {
+					assertEquals(false, Date.isValidDate(1, i, 1));
+				}
+				if (i<=31) {
+					assertEquals(true, Date.isValidDate(i, 1, 2017));
+					assertEquals(false, Date.isValidDate(-i, 1, 2017));
+					
+				}
+				else {
+					assertEquals(false, Date.isValidDate(i, 1, 2017));
+				}
+			}
 			assertEquals(true, Date.isValidDate(29, 2, 2016));
-			assertEquals(true, Date.isValidDate(1, 1, 1));
-			assertEquals(false, Date.isValidDate(32, 1, 2017));
-			assertEquals(false, Date.isValidDate(1, 13, 1));
 			assertEquals(false, Date.isValidDate(0, 0, 0));
 			assertEquals(false, Date.isValidDate(0, 1, 1));
 			assertEquals(false, Date.isValidDate(1, 0, 1));
 			assertEquals(false, Date.isValidDate(1, 1, 0));
 			assertEquals(false, Date.isValidDate(-1, -1, -1));
-			assertEquals(false, Date.isValidDate(-1, 1, 1));
-			assertEquals(false, Date.isValidDate(1, -1, 1));
-			assertEquals(false, Date.isValidDate(1, 1, -1));
-			
 			}
 		
 		@Test
