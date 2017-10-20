@@ -172,4 +172,9 @@ public class Date {
 			this.changeDate(other);
 		}
 	}
+	
+	public int dayOfTheWeek() {
+		return dateInt % 7;
+	}
+	
 }

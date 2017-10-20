@@ -102,4 +102,40 @@ public class DateTest {
 			assertEquals(2, testDate3.getMonth());
 			assertEquals(2012, testDate3.getYear());
 		}
+		
+		@Test
+		public void testDayOfTheWeek() {
+			for (int i=1; i<1000; i++) {
+				Date testDate = Date.calculateDate(i);
+				if (i%7 == 1) {
+					assertEquals(1, testDate.dayOfTheWeek());
+				}
+				
+				else if (i%7 == 2) {
+					assertEquals(2, testDate.dayOfTheWeek());
+				}
+				
+				else if (i%7 == 3) {
+					assertEquals(3, testDate.dayOfTheWeek());
+				}
+				
+				else if (i%7 == 4) {
+					assertEquals(4, testDate.dayOfTheWeek());
+				}
+				
+				else if (i%7 == 5) {
+					assertEquals(5, testDate.dayOfTheWeek());
+				}
+				
+				else if (i%7 == 6) {
+					assertEquals(6, testDate.dayOfTheWeek());
+				}
+				
+				else {
+					assertEquals(0, testDate.dayOfTheWeek());
+				}
+			}
+			Date testDate = new Date(19, 10, 2017);
+			assertEquals(4, testDate.dayOfTheWeek());
+		}
 }
