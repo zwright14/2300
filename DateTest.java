@@ -138,4 +138,26 @@ public class DateTest {
 			Date testDate = new Date(19, 10, 2017);
 			assertEquals(4, testDate.dayOfTheWeek());
 		}
+		
+		@Test
+		public void testCompareDate() {
+			int i=1;
+			Date testDate1 = new Date(31, 12, 1999);
+			Date testDate2 = new Date(29, 2, 2000);
+			while (i<100) {
+				testDate1.moveDate(1);
+				if (i<60) {
+					assertEquals(-1, testDate1.compareTo(testDate2));
+				}
+				
+				else if (i>60) {
+					assertEquals(1, testDate1.compareTo(testDate2));
+				}
+				
+				else {
+					assertEquals(0, testDate1.compareTo(testDate2));
+				}
+				i++;
+			}
+		}
 }
